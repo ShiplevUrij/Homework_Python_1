@@ -1,65 +1,47 @@
-#1 Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
-print('Введите цифру, означающую день недели')
-a = int(input())
-if 0 < a > 7:
-    print('Введите число от 1 до 7')
-elif a < 6:
-    print('Введенный день недели НЕ является выходным')
-else:
-    print('Введенный день недели является выходным')
+# 1 Напишите программу, которая принимает на вход вещественное число и показывает сумму его цифр.
+print('Введите вещественное число')
+a = input()
+print(type(a))
+summ_of_digits=0
+for i in a: 
+    if i.isdigit():
+        summ_of_digits+= int(i)
+print (f"Сумма цифр, введённого числа {a} равна {summ_of_digits}")       
 
-#2 Напишите программу для проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.
-count = 0
-for x in range(3):
-    for y in range(3):
-        for z in range(3):
-            rezultat = (not (x or y or z) == ((not x) and (not y) and (not z)))
-            if rezultat:
-                count = count+1
-            else:
-                print('Утверждение не верно')
-    if count == 27:
-        print('Утверждение верно')
+# 2 Напишите программу, которая принимает на вход число N и выдает набор произведений чисел от 1 до N.
+n = int(input('Введите число N: '))
+factorial = 1
+for i in range(1, n+1):
+    factorial *= i
+    print(factorial)
 
-#3 Напишите программу, которая принимает на вход координаты точки (X и Y), причём X ≠ 0 и Y ≠ 0 и выдаёт номер четверти плоскости, в которой находится эта точка (или на какой оси она находится).
-print('Введите значение X')
-x = int(input())
-print('Введите значение Y')
-y = int(input())
-if x == 0 and y == 0:
-    print('Значения X и Y не должны равняться нулю')
-elif x > 0 and y > 0:
-    print(f'Точка с координатами X = {x} и Y = {y} находится в I четверти')
-elif x > 0 and y < 0:
-    print(f'Точка с координатами X = {x} и Y = {y} находится в II четверти')
-elif x < 0 and y < 0:
-    print(f'Точка с координатами X = {x} и Y = {y} находится в III четверти')
-else:
-    print(f'Точка с координатами X = {x} и Y = {y} находится в IV четверти')
+# 3 Задайте список из n чисел последовательности $(1+\frac 1 n)^n$ и выведите на экран их сумму.
+n = int(input('Введите число n ')) 
+def sequence(n):
+    return[round((1 + 1 / x)**x, 2) for x in range (1, n + 1)]          
+print(sequence(n))
+print(round(sum(sequence(n))))
 
-#4 Напишите программу, которая по заданному номеру четверти, показывает диапазон возможных координат точек в этой четверти (x и y).
-print('Введите номер четверти')
-a = int(input())
-if a == 1:
-    print('x>0 and y>0')
-elif a == 2:
-    print('x>0 and y<0')
-elif a == 3:
-    print('x<0 and y<0')
-elif a == 4:
-    print('x>0 and y<0')
-else:
-    print('Номер четверти должен быть в диапозоне от 1 до 4')
+# 4 Задайте список из N элементов, заполненных числами из промежутка [-N, N]. Найдите произведение элементов на указанных позициях. 
+# Позиции хранятся в файле file.txt в одной строке одно число.
+from random import randint
+def list(n):
+    list = []
+    for i in range(n):
+        list.append(randint(-n, n))
+    return list
+n = int(input('Введите число N: '))
+numbers = list(n)
+print(numbers)
+x = open('file.txt','r')
+result = numbers[int(x.readline())] * numbers[int(x.readline(2))]
+print(result)
 
-#5 Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 2D пространстве.
-import math
-print('Введите координату X первой точки')
-x1 = int(input())
-print('Введите координату Y первой точки')
-y1 = int(input())
-print('Введите координату X второй точки')
-x2 = int(input())
-print('Введите координату Y второй точки')
-y2 = int(input())
-a = round(math.sqrt((x2-x1)**2+(y2-y1)**2), 2)
-print(a)
+# 5 Реализуйте алгоритм перемешивания списка.
+size = int (input('Введите размер массива '))
+import random
+from random import randint
+list=[randint(-10, 10) for i in range(size)]
+print(list)
+random.shuffle(list)
+print('Перемешанный массив', list)
